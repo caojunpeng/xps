@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>用户管理</h1>
+    <form id="userForm">
+
+    </form>
+    <table class="table table-bordered" id="dataTables-showbilltDetail">
+        <thead>
+        <tr>
+            <th>用户名</th>
+            <th>姓名</th>
+            <th>注册时间</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+    </table>
+</body>
+<script type="text/javascript" src="/datatable/js/jquery.js"></script>
+<script type="text/javascript" src="/datatable/js/jquery.dataTables.js"></script>
+<script type="text/javascript">
+    $('#dataTables-showbilltDetail').DataTable({
+        ajax: {
+            dataType: 'json',
+            url: "/user/datas",
+            data: function(aoData){
+                var jsonData = $("#userForm").serializeArray();
+                jsonData.forEach(function (e, index) {
+                    aoData[e.name] = e.value;
+                });
+                return aoData;
+            }
+        },
+        serverSide: true,  paging:true,
+        searching: false,bLengthChange:false,
+        ordering:false,
+        lengthMenu: [10],
+        "columns": [
+            {"data": "userName"},
+            { "data": "name"},
+            {"data": "createTime"},
+            {"data": "createTime"}
+        ],
+        responsive: true,
+        language: dataTablesLanguage,
+    });
+</script>
+</html>

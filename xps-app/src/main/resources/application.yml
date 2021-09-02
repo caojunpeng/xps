@@ -11,3 +11,8 @@ spring:
       - classpath:sql/update1.0.1/schema-update1.0.1.sql
     data: classpath:sql/update1.0.1/data-update1.0.1.sql
     initialization-mode: never
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  type-aliases-package: classpath*:com.cao.**
+  mapper-locations: classpath:**/*.xml
