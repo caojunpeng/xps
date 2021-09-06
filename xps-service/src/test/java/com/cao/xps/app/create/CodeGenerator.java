@@ -59,7 +59,7 @@ public class CodeGenerator {
         // 包配置
         final PackageConfig pc = new PackageConfig();
         pc.setModuleName(scanner("模块名"));
-        pc.setParent("com.cao.wps.service");
+        pc.setParent("com.cao.xps.service");
         mpg.setPackageInfo(pc);
 
         // 自定义配置

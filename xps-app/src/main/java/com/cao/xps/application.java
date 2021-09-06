@@ -3,12 +3,11 @@ package com.cao.xps;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
 
-//scanBasePackages:service注入;scanBasePackages="com.cao.wps.service.**"
+//(scanBasePackages = {"com.cao.xps"})
 
-@SpringBootApplication
-@MapperScan("com.cao.wps.**")
+@SpringBootApplication(scanBasePackages = {"com.cao.xps"})
+@MapperScan("com.cao.xps.service.**.mapper")
 public class application {
 
     public static void main(String[] args) {

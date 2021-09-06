@@ -1,8 +1,8 @@
 package com.cao.xps.app.login;
 
 import com.alibaba.fastjson.JSON;
-import com.cao.wps.service.user.entity.User;
-import com.cao.wps.service.user.mapper.UserMapper;
+import com.cao.xps.service.user.entity.User;
+import com.cao.xps.service.user.mapper.UserMapper;
 import com.cao.xps.app.shiro.SaltUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;

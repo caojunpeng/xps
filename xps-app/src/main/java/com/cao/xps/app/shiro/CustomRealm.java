@@ -2,12 +2,12 @@ package com.cao.xps.app.shiro;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.cao.wps.service.menu.mapper.MenuMapper;
-import com.cao.wps.service.role.mapper.RoleMapper;
-import com.cao.wps.service.roleMenu.mapper.RoleMenuMapper;
-import com.cao.wps.service.user.entity.User;
-import com.cao.wps.service.user.mapper.UserMapper;
-import com.cao.wps.service.userRole.mapper.UserRoleMapper;
+import com.cao.xps.service.menu.mapper.MenuMapper;
+import com.cao.xps.service.role.mapper.RoleMapper;
+import com.cao.xps.service.roleMenu.mapper.RoleMenuMapper;
+import com.cao.xps.service.user.entity.User;
+import com.cao.xps.service.user.mapper.UserMapper;
+import com.cao.xps.service.userRole.mapper.UserRoleMapper;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -20,14 +20,6 @@ import org.springframework.util.ObjectUtils;
 public class CustomRealm extends AuthorizingRealm {
     @Autowired
     private UserMapper userMapper;
-    @Autowired
-    private UserRoleMapper userRoleMapper;
-    @Autowired
-    private RoleMapper roleMapper;
-    @Autowired
-    private MenuMapper menuMapper;
-    @Autowired
-    private RoleMenuMapper roleMenuMapper;
 
     /**
      * 授权(暂时不通)
@@ -53,7 +45,7 @@ public class CustomRealm extends AuthorizingRealm {
             QueryWrapper<User> userQueryWrapper=new QueryWrapper<User>().eq("user_name",principal);
             //获取库中登录用户信息
             User user = userMapper.selectOne(userQueryWrapper);
-            if (!ObjectUtils.isEmpty(user)) {
+            if (!ObjectUtils.isEmpty(user)) {//校对密码
                 return new SimpleAuthenticationInfo(user.getUserName(), user.getUserPwd(), ByteSource.Util.bytes(user.getSalt()), this.getName());
             }
         }

@@ -2,6 +2,9 @@ package com.cao.xps.app.shiro;
 
 import java.util.Random;
 
+/**
+ * 盐加密类
+ */
 public class SaltUtil {
     public static String getSalt(int n) {
         char[] chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234567890!@#$%^&*()".toCharArray();

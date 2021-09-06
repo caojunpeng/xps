@@ -1,8 +1,8 @@
 package com.cao.xps.admin.management;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.cao.wps.service.menu.entity.Menu;
-import com.cao.wps.service.menu.mapper.MenuMapper;
+import com.cao.xps.service.menu.entity.Menu;
+import com.cao.xps.service.menu.mapper.MenuMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
