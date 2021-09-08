@@ -1,0 +1,46 @@
+<div class="menuEditRow" >
+    <form id="menuEditForm">
+        <div class="col-md-12">
+            <label class="col-sm-12 control-label">菜单名</label>
+            <div class="col-sm-12">
+                <input type="text" class="form-control" name="menuName" th:value="${menu?.menuName}" placeholder="请输入菜单名">
+                <input type="hidden" class="form-control" name="menuId" th:value="${menu?.menuId}">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <label class="col-sm-12 control-label">姓名</label>
+            <div class="col-sm-12">
+                <input type="text" class="form-control" name="name" th:value="${menu?.name}"  placeholder="请输入姓名">
+            </div>
+        </div>
+        <div class="col-md-12" th:if="!${menu?.menuId}">
+            <label class="col-sm-12 control-label">密码</label>
+            <div class="col-sm-12">
+                <input type="password" class="form-control" name="menuPwd" th:value="${menu?.menuPwd}" placeholder="请输入密码">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <button type="button" class="btn btn-primary savemenuBtn" onclick="savemenu()">确定</button>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    /*<![CDATA[*/
+    function savemenu() {
+        $.ajax({
+            type: "POST",
+            url: "/menu/savemenu",
+            data: $('#menuEditForm').serialize(),
+            success: function (obj) {
+                if(obj){
+                    $('#dataTables-menuList').DataTable().draw();
+                    layer.closeAll();
+                    layer.msg("更新成功");
+                    return;
+                }
+                layer.msg("更新失败");
+            }
+        });
+    }
+    /*]]>*/
+</script>

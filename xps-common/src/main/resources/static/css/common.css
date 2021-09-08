@@ -50,3 +50,57 @@
     width: 119%;
     margin-top: 25px;
 }
+
+
+/*后台-用户管理*/
+.userListDiv .delUserBtn{
+    margin-left: 15px;
+}
+.userEditRow .saveUserBtn{
+    position: absolute;
+    right: 30px;
+    top: 20px;
+}
+.userListDiv .addUserBtn{
+    position: absolute;
+    right: 50px;
+    top: 70px;
+}
+.userListDiv .userTable{
+    margin-top: 70px;
+}
+.userListDiv #userForm .userFormCol{
+    position: absolute;
+    right: 220px;
+}
+.userListDiv #userForm .searchBtn{
+    position: absolute;
+    right: 155px;
+}
+
+
+/*后台-菜单管理*/
+.menuListDiv .delmenuBtn{
+    margin-left: 15px;
+}
+.menuEditRow .savemenuBtn{
+    position: absolute;
+    right: 30px;
+    top: 20px;
+}
+.menuListDiv .addmenuBtn{
+    position: absolute;
+    right: 50px;
+    top: 70px;
+}
+.menuListDiv .menuTable{
+    margin-top: 70px;
+}
+.menuListDiv #menuForm .menuFormCol{
+    position: absolute;
+    right: 220px;
+}
+.menuListDiv #menuForm .searchBtn{
+    position: absolute;
+    right: 155px;
+}

@@ -16,7 +16,7 @@
                 <li class="layui-nav-item " th:each="menuP : ${parentMenu}">
                     <a class="" href="javascript:;" th:text="${menuP.menuTitle}"> </a>
                     <dl class="layui-nav-child" >
-                        <dd th:each="menu : ${menuList}"><a href="javascript:;" th:onclick="menuToPage([[${menu.action}]]);" th:text="${menu.menuTitle}" th:if="${menu.parentName} eq ${menuP.menuName}">用户管理</a></dd>
+                        <dd th:each="menu : ${menuList}"><a href="javascript:;" th:onclick="utils.menuToPage([[${menu.action}]]);" th:text="${menu.menuTitle}" th:if="${menu.parentName} eq ${menuP.menuName}">用户管理</a></dd>
                     </dl>
                 </li>
             </ul>

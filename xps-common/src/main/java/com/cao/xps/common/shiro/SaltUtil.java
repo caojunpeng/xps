@@ -1,4 +1,4 @@
-package com.cao.xps.app.shiro;
+package com.cao.xps.common.shiro;
 
 import java.util.Random;
 

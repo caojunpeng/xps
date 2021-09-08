@@ -1,31 +1,30 @@
-
-<div class="userListDiv">
-    <h1>用户管理</h1>
-    <form id="userForm">
-        <div class="col-md-2 userFormCol">
+<div class="menuListDiv">
+    <h1>菜单管理</h1>
+    <form id="menuForm">
+        <div class="col-md-2 menuFormCol">
             <input type="text" class="form-control" name="keyword">
         </div>
-        <button type="button" class="btn btn-primary searchBtn" onclick="searchUser()">查询</button>
-        <button type="button" class="btn btn-primary addUserBtn" onclick="saveUserPage()">新增用户</button>
+        <button type="button" class="btn btn-primary searchBtn" onclick="searchmenu()">查询</button>
+        <button type="button" class="btn btn-primary addmenuBtn" onclick="savemenuPage()">新增用户</button>
     </form>
-    <table class="table table-striped userTable" id="dataTables-userList">
+    <table class="table table-striped menuTable" id="dataTables-menuList">
         <thead>
-        <tr>
-            <th>用户名</th>
-            <th>姓名</th>
-            <th>注册时间</th>
-            <th>操作</th>
-        </tr>
+            <tr>
+                <th>菜单名称</th>
+                <th>路径</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
         </thead>
     </table>
 </div>
 <script type="text/javascript">
-    $('#dataTables-userList').DataTable({
+    $('#dataTables-menuList').DataTable({
         ajax: {
             dataType: 'json',
-            url: "/user/datas",
+            url: "/menu/datas",
             data: function (aoData) {
-                var jsonData = $("#userForm").serializeArray();
+                var jsonData = $("#menuForm").serializeArray();
                 jsonData.forEach(function (e, index) {
                     aoData[e.name] = e.value;
                 });
@@ -37,14 +36,21 @@
         ordering: false,
         lengthMenu: [10],
         "columns": [
-            {"data": "userName"},
-            {"data": "name"},
-            {"data": "createTime"},
+            {"data": "menuTitle"},
+            {"data": "action"},
+            {"data": null, render: function (data) {
+                    if(data.status=='1'){
+                        return '可用';
+                    }else{
+                        return '禁用';
+                    }
+                }
+            },
             {
                 "data": null, render: function (data) {
                     var btnHtml = "";
-                    btnHtml += '<button class="btn btn-primary btn-sm" onclick="saveUserPage(' + data.userId + ')">编辑</button>';
-                    btnHtml += '<button class="btn btn-danger btn-sm delUserBtn" onclick="delUser(' + data.userId + ')">删除</button>';
+                    btnHtml += '<button class="btn btn-primary btn-sm" onclick="savemenuPage(' + data.menuId + ')">编辑</button>';
+                    btnHtml += '<button class="btn btn-danger btn-sm delmenuBtn" onclick="delmenu(' + data.menuId + ')">删除</button>';
                     return btnHtml;
                 }
             }
@@ -54,20 +60,20 @@
     });
 
     //删除方法
-    function delUser(id) {
+    function delmenu(id) {
         layer.confirm('你确定要删除么？', {
             btn: ['确定', '取消'] //按钮
         }, function () {
             $.ajax({
                 type: "POST",
-                url: "/user/delUser",
-                data: {userId:id},
+                url: "/menu/delmenu",
+                data: {menuId:id},
                 success: function (obj) {
                     if(obj){
                         layer.msg("删除成功");
                         return;
                     }
-                        layer.msg("删除失败");
+                    layer.msg("删除失败");
                 }
             });
         }, function () {
@@ -75,11 +81,11 @@
     }
 
     //新增用户
-    function saveUserPage(id) {
+    function savemenuPage(id) {
         $.ajax({
             type: "POST",
-            url: "/user/editUser",
-            data: {userId:id},
+            url: "/menu/editMenu",
+            data: {menuId:id},
             success: function (data) {
                 layer.open({
                     type: 1,
