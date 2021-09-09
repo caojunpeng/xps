@@ -8,15 +8,36 @@
             </div>
         </div>
         <div class="col-md-12">
-            <label class="col-sm-12 control-label">姓名</label>
+            <label class="col-sm-12 control-label">菜单标签</label>
             <div class="col-sm-12">
-                <input type="text" class="form-control" name="name" th:value="${menu?.name}"  placeholder="请输入姓名">
+                <input type="text" class="form-control" name="menuTitle" th:value="${menu?.menuTitle}" placeholder="请输入菜单标签">
             </div>
         </div>
-        <div class="col-md-12" th:if="!${menu?.menuId}">
-            <label class="col-sm-12 control-label">密码</label>
+        <div class="col-md-12">
+            <label class="col-sm-12 control-label">父级</label>
             <div class="col-sm-12">
-                <input type="password" class="form-control" name="menuPwd" th:value="${menu?.menuPwd}" placeholder="请输入密码">
+                <input type="text" class="form-control" name="parentName" th:value="${menu?.parentName}" placeholder="请输入父级">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <label class="col-sm-12 control-label">请求地址</label>
+            <div class="col-sm-12">
+                <input type="text" class="form-control" name="action" th:value="${menu?.action}" placeholder="请求地址">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <label class="col-sm-12 control-label">顺序</label>
+            <div class="col-sm-12">
+                <input type="text" class="form-control" name="orderBy" th:value="${menu?.orderBy}" placeholder="顺序">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <label class="col-sm-12 control-label">状态</label>
+            <div class="col-sm-12">
+                <select class="form-control" name="status" >
+                    <option value="1" th:checked="${menu?.status} eq '1'">可用</option>
+                    <option value="0" th:checked="${menu?.status} eq '0'">禁用</option>
+                </select>
             </div>
         </div>
         <div class="col-md-12">
@@ -29,7 +50,7 @@
     function savemenu() {
         $.ajax({
             type: "POST",
-            url: "/menu/savemenu",
+            url: "/menu/saveMenu",
             data: $('#menuEditForm').serialize(),
             success: function (obj) {
                 if(obj){

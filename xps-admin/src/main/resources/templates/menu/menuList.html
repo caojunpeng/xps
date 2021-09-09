@@ -4,13 +4,14 @@
         <div class="col-md-2 menuFormCol">
             <input type="text" class="form-control" name="keyword">
         </div>
-        <button type="button" class="btn btn-primary searchBtn" onclick="searchmenu()">查询</button>
+        <button type="button" class="btn btn-primary searchBtn" onclick="searchMenu()">查询</button>
         <button type="button" class="btn btn-primary addmenuBtn" onclick="savemenuPage()">新增用户</button>
     </form>
     <table class="table table-striped menuTable" id="dataTables-menuList">
         <thead>
             <tr>
                 <th>菜单名称</th>
+                <th>菜单标签</th>
                 <th>路径</th>
                 <th>状态</th>
                 <th>操作</th>
@@ -36,6 +37,7 @@
         ordering: false,
         lengthMenu: [10],
         "columns": [
+            {"data": "menuName"},
             {"data": "menuTitle"},
             {"data": "action"},
             {"data": null, render: function (data) {
@@ -66,10 +68,11 @@
         }, function () {
             $.ajax({
                 type: "POST",
-                url: "/menu/delmenu",
+                url: "/menu/delMenu",
                 data: {menuId:id},
                 success: function (obj) {
                     if(obj){
+                        $('#dataTables-menuList').DataTable().draw();
                         layer.msg("删除成功");
                         return;
                     }
@@ -95,5 +98,8 @@
                 });
             }
         });
+    }
+    function searchMenu() {
+        $('#dataTables-menuList').DataTable().draw();
     }
 </script>

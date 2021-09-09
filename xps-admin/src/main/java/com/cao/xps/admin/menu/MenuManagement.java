@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 
 @Controller
 @RequestMapping("/menu")
@@ -44,14 +45,15 @@ public class MenuManagement {
     }
 
     @ResponseBody
-    @RequestMapping("/delmenu")
+    @RequestMapping("/delMenu")
     public boolean delmenu(MenuParams menuParams) {
         return menuService.removeById(menuParams.getMenuId());
     }
 
     @ResponseBody
-    @RequestMapping("/savemenu")
+    @RequestMapping("/saveMenu")
     public boolean savemenu(Menu menu) {
+        menu.setCreateTime(LocalDateTime.now());
         return menuService.saveOrUpdate(menu);
     }
 }
