@@ -32,6 +32,7 @@ public class ShiroConfiguration {
         map.put("/css/**", "anon");
         map.put("/bootstrap/**", "anon");
         map.put("/datatable/**", "anon");
+        map.put("/zTree/**", "anon");
         map.put("/images/**", "anon");
         map.put("/static/**", "anon");
         map.put("/jquery/**", "anon");

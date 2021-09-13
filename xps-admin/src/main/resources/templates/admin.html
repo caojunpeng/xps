@@ -9,11 +9,28 @@
     .layui-nav-child{
         margin-bottom: 0px;
     }
+    .layui-header .system-main{
+        display: block;
+        margin-left: 200px;
+        width:calc(100% - 200px);
+    }
+    .layui-header .system-main #main{
+        position: absolute;
+        right: 200px;
+    }
+    .layui-header .system-main #logout{
+        position: absolute;
+        right: 120px;
+    }
 </style>
 <body>
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
         <div class="layui-logo layui-hide-xs">后台管理</div>
+        <div class="system-main">
+            <a href="/index" id="main">系统主页</a>
+            <a href="/logout" id="logout">退出登录</a>
+        </div>
     </div>
     <div class="layui-side layui-bg-black">
         <div class="layui-side-scroll">

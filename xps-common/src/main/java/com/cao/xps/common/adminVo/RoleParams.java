@@ -1,6 +1,9 @@
 package com.cao.xps.common.adminVo;
 
 import com.cao.xps.common.vo.DataTablesParams;
+import jdk.nashorn.internal.ir.GetSplitState;
+
+import java.util.List;
 
 public class RoleParams extends DataTablesParams {
     /**
@@ -10,7 +13,19 @@ public class RoleParams extends DataTablesParams {
     /**
      * id
      */
-    private String roleId;
+    private Integer roleId;
+    /**
+     * 授权菜单
+     */
+    private Integer[] menuIdList;
+
+    public Integer[] getMenuIdList() {
+        return menuIdList;
+    }
+
+    public void setMenuIdList(Integer[] menuIdList) {
+        this.menuIdList = menuIdList;
+    }
 
     public String getKeyword() {
         return keyword;
@@ -20,11 +35,11 @@ public class RoleParams extends DataTablesParams {
         this.keyword = keyword;
     }
 
-    public String getRoleId() {
+    public Integer getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(String roleId) {
+    public void setRoleId(Integer roleId) {
         this.roleId = roleId;
     }
 }

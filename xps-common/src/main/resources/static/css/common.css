@@ -52,6 +52,19 @@
 }
 
 
+
+/*后台-主页*/
+.system-main{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 100%;
+    line-height: 60px;
+    text-align: center;
+    color: #4daaa2;
+    font-size: 16px;
+}
 /*后台-用户管理*/
 .userListDiv .delUserBtn{
     margin-left: 15px;
@@ -103,4 +116,34 @@
 .menuListDiv #menuForm .searchBtn{
     position: absolute;
     right: 155px;
+}
+
+
+/* 角色管理 */
+.roleListDiv .delroleBtn{
+    margin-left: 15px;
+}
+.roleEditRow .saveroleBtn{
+    position: absolute;
+    right: 30px;
+    top: 20px;
+}
+.roleListDiv .addroleBtn{
+    position: absolute;
+    right: 50px;
+    top: 70px;
+}
+.roleListDiv .roleTable{
+    margin-top: 70px;
+}
+.roleListDiv #roleForm .roleFormCol{
+    position: absolute;
+    right: 220px;
+}
+.roleListDiv #roleForm .searchBtn{
+    position: absolute;
+    right: 155px;
+}
+#menuTree .addRoleMenuBtn{
+    margin-left: 320px;
 }
