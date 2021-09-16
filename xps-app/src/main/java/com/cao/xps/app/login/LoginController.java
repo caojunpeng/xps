@@ -11,6 +11,7 @@ import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.subject.Subject;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -43,7 +44,11 @@ public class LoginController {
     @RequestMapping("/index")
     public ModelAndView index(){
         ModelAndView modelAndView=new ModelAndView();
-        modelAndView.setViewName("index/index");
+        Object object = SecurityUtils.getSubject().getPrincipal();
+        if(object!=null){
+            modelAndView.addObject("userName",object);
+        }
+        modelAndView.setViewName("index");
         return modelAndView;
     }
     @RequestMapping("/login")
