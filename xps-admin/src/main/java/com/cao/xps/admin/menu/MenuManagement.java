@@ -27,33 +27,6 @@ public class MenuManagement {
         modelAndView.setViewName("/menu/menuList");
         return modelAndView;
     }
-    @RequestMapping("/editMenu")
-    public ModelAndView editmenu(MenuParams menuParams) {
-        ModelAndView modelAndView = new ModelAndView();
-        if(menuParams!=null && StringUtils.isNotBlank(menuParams.getMenuId())){
-            Menu menuBymenuId = menuService.getById(menuParams.getMenuId());
-            modelAndView.addObject("menu",menuBymenuId);
-        }
-        modelAndView.setViewName("/menu/editMenu");
-        return modelAndView;
-    }
 
-    @ResponseBody
-    @RequestMapping("/datas")
-    public DataTablesResult<Menu> datas(MenuParams menuParams) {
-        return menuService.dataLists(menuParams);
-    }
 
-    @ResponseBody
-    @RequestMapping("/delMenu")
-    public boolean delmenu(MenuParams menuParams) {
-        return menuService.removeById(menuParams.getMenuId());
-    }
-
-    @ResponseBody
-    @RequestMapping("/saveMenu")
-    public boolean savemenu(Menu menu) {
-        menu.setCreateTime(LocalDateTime.now());
-        return menuService.saveOrUpdate(menu);
-    }
 }

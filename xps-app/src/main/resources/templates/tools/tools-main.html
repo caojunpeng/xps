@@ -1,0 +1,22 @@
+<div>
+    <input type="file" id="QRFile" name="QRFile"/>
+    <button type="button"  onclick="uploadQRFileBtn()">上传二维码文件</button>
+</div>
+<script type="text/javascript">
+    /*<![CDATA[*/
+    function uploadQRFileBtn(){
+        $.ajaxFileUpload({
+            type: 'POST',
+            dataType: 'text',
+            data:{},
+            url:"/tools/analysisQR",
+            fileElementId: "QRFile",
+            secureuri: false, //一般设置为false
+            success:function(data){
+                debugger
+               alert(data);
+            }
+        })
+    }
+    /*]]>*/
+</script>

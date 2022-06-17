@@ -142,6 +142,15 @@
 .main-div .main-bottom .main-left .left-menu .iconSpan{
     font-size: 50px;
 }
+.main-div .main-bottom .fileUploadDiv{
+    display: block;
+    position: absolute;
+    left: 670px;
+    top: 155px;
+}
+.main-div .main-bottom #addfiles{
+    display: none;
+}
 .main-div .main-bottom .main-right{
     display: block;
     width: 1743px;
@@ -149,6 +158,7 @@
     border: 1px solid #4dadff;
     float: left;
 }
+
 .main-div .main-bottom .main-right .main-right-menus{
     position: absolute;
     left: 400px;
@@ -180,9 +190,14 @@
     width: 500px;
     top: 200px;
 }
+.main-div .main-bottom .main-right .main-right-info .image{
+    height: 650px;
+    width: 500px;
+}
 .layui-dropdown-menu .layui-menu-body-title{
     color: #000000de;
 }
+
 
 
 

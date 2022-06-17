@@ -1,5 +1,8 @@
 package com.cao.xps.app.login;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.cao.xps.service.menu.entity.Menu;
+import com.cao.xps.service.menu.service.IMenuService;
 import com.cao.xps.service.user.entity.User;
 import com.cao.xps.service.user.mapper.UserMapper;
 import com.cao.xps.common.shiro.SaltUtil;
@@ -16,12 +19,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.Resource;
+import java.util.List;
+
 
 @Controller
 public class LoginController {
 
     @Autowired
     private UserMapper userMapper;
+    @Resource
+    private IMenuService menuService;
 
 
     @RequestMapping("/loginHtml")
@@ -48,6 +56,9 @@ public class LoginController {
         if(object!=null){
             modelAndView.addObject("userName",object);
         }
+        QueryWrapper<Menu> menuQueryWrapper=new QueryWrapper<Menu>().eq("parent_name","main").eq("status",1);
+        List<Menu> list = menuService.list(menuQueryWrapper);
+        modelAndView.addObject("menulist",list);
         modelAndView.setViewName("index");
         return modelAndView;
     }
@@ -62,12 +73,6 @@ public class LoginController {
         ModelAndView modelAndView=new ModelAndView();
         modelAndView.setViewName("user/addUser");
         return modelAndView;
-    }
-    @RequestMapping("/logout")
-    public String logout() {
-        Subject subject = SecurityUtils.getSubject();
-        subject.logout();
-        return "redirect:/login";
     }
     @RequestMapping("/saveUser")
     public String register(User user) {
@@ -85,8 +90,14 @@ public class LoginController {
             e.printStackTrace();
             return "redirect:/login";
         }
-    }
 
+    }
+    @RequestMapping("/logout")
+    public String logout() {
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+        return "redirect:/login";
+    }
 
 }
 

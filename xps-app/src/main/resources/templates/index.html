@@ -12,47 +12,46 @@
             <div class="top-right">
                 <div class="headDiv adminManagerDiv" onclick="adminManager()"> <i class="adminManagerIcon"></i>设置</div>
                 <div class="headDiv headSapn" onclick="headInfo()"> <i class="headIcon"></i><span class="headSpan" th:text="${userName}"></span></div>
+                <input type="hidden" id="userName" th:value="${userName}"/>
             </div>
         </div>
         <div class="main-bottom">
             <div class="main-left">
-                <ul>
-                    <li>
+                <ul class="menuUl">
+                    <li th:each="menu : ${menulist}" th:onclick="menuClick([[${menu.action}]]);">
                         <div class="left-menu">
-                            <sapn class="glyphicon glyphicon-folder-open iconSpan" title="文件夹" aria-hidden="true"></sapn><br/>
-                            <span>文件夹</span>
+                            <div class="blackgroundDiv">
+                                <sapn class="glyphicon glyphicon-folder-open iconSpan" th:title="${menu.menuTitle}" aria-hidden="true"></sapn><br/>
+                                <span th:text="${menu.menuTitle}"></span>
+                            </div>
                         </div>
                     </li>
                 </ul>
             </div>
             <div class="main-right">
-                <div class="main-right-menus">
-                    <div class="main-menu">
-                        <sapn class="glyphicon glyphicon-picture iconSpan" title="图片" aria-hidden="true"></sapn>
-                        图片
-                    </div>
-                    <div class="main-menu">
-                        <sapn class="glyphicon glyphicon-bullhorn iconSpan" title="音频" aria-hidden="true"></sapn>
-                        音频
-                    </div>
-                    <div class="main-menu">
-                        <sapn class="glyphicon glyphicon-facetime-video iconSpan" title="视频" aria-hidden="true"></sapn>
-                        视频
-                    </div>
-                    <div class="main-menu">
-                        <sapn class="glyphicon glyphicon-file iconSpan" title="文件" aria-hidden="true"></sapn>
-                        文件
-                    </div>
-                </div>
-                <div class="main-right-info">
 
-                </div>
             </div>
         </div>
     </div>
 
 </body>
 <script type="text/javascript">
+    $(function () {
+        var addfiles=$("#addfiles").val();
+        localStorage.setItem("login-userName",addfiles);
+        $(".menuUl li").eq(0).click();
+    })
+    function menuClick(url) {
+        $.ajax({
+            type: 'POST',
+            url:url,
+            success: function(data) {
+                if(data){
+                    $(".main-right").html(data);
+                }
+            }
+        });
+    }
     function logout() {
         window.location.href="/logout";
     }
@@ -95,5 +94,27 @@
             ,style: 'color:black'
         });
     })
+    function fileUpload(){
+        $("#addfiles").click();
+    }
+    function insertFiles() {
+        var files = $("#addfiles")[0].files;
+        var formData = new FormData();
+        for(var i=0;i<files.length;i++){
+            formData.append("files", files[i]);
+        }
+        formData.append("userName", $("#userName").val());
+        $.ajax({
+            type: 'POST',
+            data: formData,
+            url:"/files/insertFiles",
+            processData: false,
+            contentType: false,
+            secureuri: false,
+            success: function(data) {
+
+            }
+        });
+    }
 </script>
 </html>

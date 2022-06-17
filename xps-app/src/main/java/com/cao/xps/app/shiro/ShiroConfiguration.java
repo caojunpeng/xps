@@ -2,7 +2,6 @@ package com.cao.xps.app.shiro;
 
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.realm.Realm;
-import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.context.annotation.Bean;
@@ -46,7 +45,7 @@ public class ShiroConfiguration {
         map.put("/*","authc");//表示这个资源需要认证和授权
         // 设置认证界面路径
         shiroFilterFactoryBean.setLoginUrl("/login");
-        // 设置认证
+        //置 设认证
         shiroFilterFactoryBean.setSuccessUrl("/index");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
 
