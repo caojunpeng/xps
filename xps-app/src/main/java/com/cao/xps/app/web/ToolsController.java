@@ -34,6 +34,18 @@ public class ToolsController {
         modelAndView.setViewName("/tools/tools-Main");
         return modelAndView;
     }
+    @RequestMapping("/websocket")
+    public ModelAndView websocket() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/websocket/websocket");
+        return modelAndView;
+    }
+    @RequestMapping("/vueText")
+    public ModelAndView vueText() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/vue/vue1");
+        return modelAndView;
+    }
 
 
     /**

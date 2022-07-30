@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="text">
+    <span v-bind:title="mssage">测试title</span>
+    <input type="text" v-model="mssage"/> {{mssage}}
+    <input type="text" v-model="code"/> {{code}}
+    <span v-if="code>20">大于20</span>
+    <span v-else-if="code>10">打于10小于等于20</span>
+    <span v-else>小于等于10</span>
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+<script >
+    var vm =new Vue({
+        el: "#text",
+        data: {
+            mssage: "123",
+            code: 13
+        },
+        methods: function () {
+
+        }
+    })
+</script>
+</html>

@@ -8,6 +8,9 @@
     · echart
     · luncence      全文搜索
     · DaoMainText      通过java链接数据库
+    · thead         多线程(thead独立文件夹)
+    · webSocket     消息通知(webSocket独立文件夹)
+    · lambda        
 
 
 功能介绍：
