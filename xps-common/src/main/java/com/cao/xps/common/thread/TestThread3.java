@@ -1,5 +1,9 @@
 package com.cao.xps.common.thread;
 
+import org.omg.CORBA.TIMEOUT;
+
+import java.util.concurrent.*;
+
 /**
  * 模拟龟兔赛跑
  */
@@ -42,9 +46,12 @@ public class TestThread3 implements Runnable{
     }
 
     public static void main(String[] args) {
-        TestThread3 t3 = new TestThread3();
-        new Thread(t3,"兔子").start();
-        new Thread(t3,"乌龟").start();
+
+        TestThread3 testThread3 = new TestThread3();
+        ExecutorService e = Executors.newWorkStealingPool();
+
+        e.submit(testThread3);
+
     }
 
 }

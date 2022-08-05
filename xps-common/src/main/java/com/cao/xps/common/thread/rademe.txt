@@ -1,0 +1,40 @@
+多线程：
+    1、线程和进程
+        进程系统进行资源分配和调用的独立单位，可理解为正在运行的程序。
+        线程是进程中的一个执行路径
+    2、多线程的实现方式
+        继承Thread类，重写run方法
+        实现Runnable接口，重写run()方法              --使用 new Thread("线程名"，创建当前对象);
+        实现callable接口,实现call方法（又返回值）      --使用 new FutureTask(创建当前对象) new Thread(FutureTask);
+    3、线程方法
+        获取线程名称         Thread.currentThread().getName()
+        线程睡眠(不释放锁)    Thread.sleep(1000)  单位：毫秒
+        线程等待(释放锁)      wite()
+        优先级              setPriority()
+        线程礼让            yield()
+        线程抢占            join();
+        唤醒当前线程         notify()
+        唤醒所有线程         notifyAll()
+        线程状态            getState()
+        设置守护线程         setDaemon(boolean on)
+    4、生命周期
+        线程创建-线程就绪-阻塞状态-运行状态-消亡
+    5、线程安全
+        同步代码块：          synchronize()d{}
+        锁方法：              synchronize
+        锁代码（需关闭）：     lock                  上锁:lock()   释放锁：unlock()
+    6、线程池ExecutorService
+        固定数量：          ExecutorService e = Executors.newFixedThreadPool(数量)
+        带缓存：            ExecutorService e = Executors.newCachedThreadPool()
+        执行定时任务        ScheduledExecutorService s= Executors.newScheduledThreadPool(数量)
+            延时执行一次：             schedule(testThread，2，TimeUnit.HOURS)                    //两小时候执行一次
+            定时执行：                e.scheduleAtFixedRate(testThread,2,4, TimeUnit.HOURS)      //两秒后执行，每4小时执行一次
+                                    scheduleAtFixedRate 是以上⼀次任务的开始时间，作为下次定时任务的参考时间的（参考时间+延迟任务=任务执⾏）。
+                                    scheduleWithFixedDelay 是以上⼀次任务的结束时间，作为下次定时任务的参考时间的。
+        定时任务单线程      ScheduledExecutorService e = Executors.newSingleThreadScheduledExecutor();
+        单线程            ExecutorService e = Executors.newSingleThreadScheduledExecutor();
+        根据cpu           ExecutorService e = Executors.newWorkStealingPool();
+        ThreadPoolExecutor：
+    7、线程池方法：
+        执行线程：           submit(线程);
+

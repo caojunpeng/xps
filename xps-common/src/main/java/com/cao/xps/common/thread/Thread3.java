@@ -24,7 +24,8 @@ public class Thread3 implements Callable<Boolean> {
         Thread3 t1 = new Thread3();
         Thread3 t2 = new Thread3();
         Thread3 t3 = new Thread3();
-
+        FutureTask futureTask= new FutureTask(t3);
+        new Thread(futureTask).start();
         //创建执行服务
         ExecutorService e =Executors.newFixedThreadPool(3);
 

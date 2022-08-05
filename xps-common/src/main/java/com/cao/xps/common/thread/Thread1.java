@@ -1,5 +1,7 @@
 package com.cao.xps.common.thread;
 
+import java.util.concurrent.Callable;
+
 /**
  * 多线程方法-继承Thread类  1.继承Thread类;2.重写Run()方法;3.调用start()方法
  * 启动线程不一定立即执行，看cpu调度
