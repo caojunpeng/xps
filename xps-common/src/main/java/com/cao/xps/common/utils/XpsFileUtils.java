@@ -1,9 +1,12 @@
 package com.cao.xps.common.utils;
 
 import org.apache.commons.io.FileUtils;
+
 import org.apache.commons.lang.StringUtils;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
@@ -111,5 +114,41 @@ public class XpsFileUtils extends FileUtils {
             logger.error("格式化路径异常"+e.getMessage(),e);
         }
         return returnPath;
+    }
+
+    /**
+     * 将list数据写入文件
+     * @param fileInfo
+     * @param path
+     */
+    public static void writeObject(List<String> fileInfo,String path) {
+        OutputStreamWriter osw =null;
+        try {
+            File file=new File(path);
+            if(file.exists()) {
+                file.delete();
+            }
+            //参数true:覆盖文件中内容，反之
+            FileOutputStream fos = new FileOutputStream(path,true);
+            //将信息写入文件之后出现乱码情况需要配置字体编码
+            osw = new OutputStreamWriter(fos, "UTF-8");
+            StringBuffer infoValue=new StringBuffer();
+            if(fileInfo!=null&&!fileInfo.isEmpty()) {
+                for(String info:fileInfo){
+                    infoValue.append(info+"\r\n");//  '\r\n' 是用换行使用
+                }
+            }
+            osw.write(infoValue.toString());
+            osw.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                osw.close();
+            } catch (IOException e) {
+                logger.info("文件流关闭异常"+e.getMessage());
+            }
+        }
+
     }
 }
