@@ -21,6 +21,7 @@ public class LuncenceController {
     @Resource
     private LuncenceManage luncenceManage;
 
+
     @RequestMapping("/createIndex")
     @ResponseBody
     public void createIndex() throws Exception {
